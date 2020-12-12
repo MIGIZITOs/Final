@@ -12,6 +12,7 @@ using Final.Models;
 
 namespace Final.Controllers
 {
+    [RoutePrefix("api")]
     public class finalsController : ApiController
     {
         private DataContext db = new DataContext();
@@ -83,6 +84,17 @@ namespace Final.Controllers
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = final.numero }, final);
+        }
+        [HttpGet]
+        [Route("{id:int}")]
+        public string Operacion(int id)
+        {
+            if (id < 0)
+                return "ERROR";
+            if (id == 0)
+                return "Realizado por Miguel Tapia";
+            return "https://image.freepik.com/vector-gratis/numeros-cartel-imagen_1639-6453.jpg";
+
         }
 
         // DELETE: api/finals/5
